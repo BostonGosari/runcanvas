@@ -24,7 +24,7 @@ function Header() {
     width: 100%;
     background-color: ${scrolling ? "rgba(255, 255, 255, 0.8)" : "transparent"};
     color: rgb(0, 0, 0);
-    font-family: Pretendard;
+    font-family: Pretendard, Apple SD Gothic Neo;
     backdrop-filter: ${scrolling ? "blur(10px)" : "none"};
     z-index: 1;
     position: fixed;
@@ -38,6 +38,10 @@ function Header() {
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px;
+
+    @media screen and (max-width: 768px) {
+      padding: 10px 10px;
+    }
   `;
 
   const LeftHeader = styled.div`
@@ -48,6 +52,10 @@ function Header() {
   const RightHeader = styled.div`
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   `;
 
   const HeaderButton = styled.button`
@@ -70,12 +78,22 @@ function Header() {
   const Logo = styled.img`
     width: 56px;
     height: 56px;
+
+    @media screen and (max-width: 768px) {
+      width: 32px;
+      height: 32px;
+    }
   `;
 
   const AppName = styled.div`
     font-weight: bold;
     font-size: 36px;
     margin-left: 35px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      margin-left: 6px;
+    }
   `;
 
   const TeamName = styled.div`

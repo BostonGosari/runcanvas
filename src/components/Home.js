@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
 import bodyImage from "../assets/img/body.jpg";
+import mobileBodyImage from "../assets/img/mobileBody.jpg";
 
 const HomeContainer = styled.div`
   max-width: 1512px;
@@ -12,6 +13,20 @@ const HomeContainer = styled.div`
 const HomeImage = styled.img`
   max-width: 100%;
   height: auto;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileHomeImage = styled.img`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 `;
 
 const Button1 = styled.button`
@@ -24,7 +39,7 @@ const Button1 = styled.button`
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  top: 12%;
+  top: 12.5%;
   left: 50%;
   opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
@@ -34,6 +49,19 @@ const Button1 = styled.button`
     color: rgb(0, 0, 0);
     background-color: #37f28d;
     transition: all 0.3s ease-in;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 3vw 8vw;
+    border-radius: 3vw;
+    font-size: 6vw;
+    top: 15%;
+
+    &:hover {
+      color: rgb(255, 255, 255);
+      background-color: #3e3e3e;
+      transition: none;
+    }
   }
 `;
 
@@ -47,7 +75,7 @@ const Button2 = styled.button`
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  top: 91%;
+  top: 91.5%;
   left: 50%;
   opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
@@ -57,6 +85,19 @@ const Button2 = styled.button`
     color: rgb(0, 0, 0);
     background-color: #37f28d;
     transition: all 0.3s ease-in;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 3vw 8vw;
+    border-radius: 3vw;
+    font-size: 6vw;
+    top: 91%;
+
+    &:hover {
+      color: rgb(255, 255, 255);
+      background-color: #3e3e3e;
+      transition: none;
+    }
   }
 `;
 
@@ -79,6 +120,7 @@ function Home() {
     <HomeContainer>
       <div>{isShowing ? <Modal onClose={setIsShowing} /> : null}</div>
       <HomeImage src={bodyImage} alt="Body" />
+      <MobileHomeImage src={mobileBodyImage} alt="MobileBody" />
       <Button1 showButton={showButton} onClick={() => openModal()}>
         사전예약하기
       </Button1>
