@@ -28,7 +28,7 @@ function Header() {
     backdrop-filter: ${scrolling ? "blur(10px)" : "none"};
     z-index: 1;
     position: fixed;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
   `;
 
   const Header = styled.div`
@@ -40,12 +40,12 @@ function Header() {
     padding: 20px 20px;
   `;
 
-  const Left = styled.div`
+  const LeftHeader = styled.div`
     display: flex;
     align-items: center;
   `;
 
-  const Right = styled.div`
+  const RightHeader = styled.div`
     display: flex;
     align-items: center;
   `;
@@ -87,14 +87,14 @@ function Header() {
   return (
     <HeaderContainer>
       <Header>
-        <Left>
+        <LeftHeader>
           <Logo src={logoImage} className="logoimage" alt="logo" />
           <AppName>Runcanvas</AppName>
-        </Left>
-        <Right>
+        </LeftHeader>
+        <RightHeader>
           <TeamName>런캔버스팀</TeamName>
           <HeaderButton>사전예약하기</HeaderButton>
-        </Right>
+        </RightHeader>
       </Header>
     </HeaderContainer>
   );

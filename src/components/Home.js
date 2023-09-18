@@ -28,11 +28,12 @@ const Button1 = styled.button`
   left: 50%;
   opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
-  transition: all 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
 
   &:hover {
     color: rgb(0, 0, 0);
     background-color: #37f28d;
+    transition: all 0.3s ease-in;
   }
 `;
 
@@ -50,11 +51,12 @@ const Button2 = styled.button`
   left: 50%;
   opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
-  transition: all 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
 
   &:hover {
     color: rgb(0, 0, 0);
     background-color: #37f28d;
+    transition: all 0.3s ease-in;
   }
 `;
 
