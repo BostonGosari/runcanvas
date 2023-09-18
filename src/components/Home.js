@@ -1,21 +1,76 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
-function Home() {
-  const Home = styled.div``;
+import bodyImage from "../assets/img/body.png";
 
+const HomeContainer = styled.div`
+  max-width: 1512px;
+  margin: 0 auto;
+  position: relative;
+`;
+
+const HomeImage = styled.img`
+  max-width: 100%;
+  height: auto;
+`;
+
+const Button1 = styled.button`
+  background-color: #3e3e3e;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 1.5vw 4vw;
+  border-radius: 1.5vw;
+  font-size: 3vw;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    color: rgb(0, 0, 0);
+    background-color: #37f28d;
+  }
+`;
+
+const Button2 = styled.button`
+  background-color: #3e3e3e;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 1.5vw 4vw;
+  border-radius: 1.5vw;
+  font-size: 3vw;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 91%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    color: rgb(0, 0, 0);
+    background-color: #37f28d;
+  }
+`;
+
+function Home() {
   const [isShowing, setIsShowing] = useState(false);
+
   const openModal = () => {
     setIsShowing(true);
   };
 
   return (
-    <Home>
+    <HomeContainer>
+      <div>{isShowing ? <Modal onClose={setIsShowing} /> : null}</div>
+      <HomeImage src={bodyImage} alt="Body" />
+      <Button1>사전예약하기</Button1>
+      <Button2>사전예약하기</Button2>
       <a className="apply" onClick={() => openModal()}>
         사전신청하기
       </a>
-      <div>{isShowing != "" ? <Modal onClose={setIsShowing} /> : null}</div>
-    </Home>
+    </HomeContainer>
   );
 }
 
