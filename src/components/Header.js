@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Modal from "./Modal";
 import styled from "styled-components";
 import logoImage from "../assets/img/logo.png";
 
 function Header() {
   const [scrolling, setScrolling] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -19,6 +21,15 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // 모달을 닫기 위한 함수
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const HeaderContainer = styled.div`
     width: 100%;
@@ -111,9 +122,10 @@ function Header() {
         </LeftHeader>
         <RightHeader>
           <TeamName>런캔버스팀</TeamName>
-          <HeaderButton>사전예약하기</HeaderButton>
+          <HeaderButton onClick={() => openModal()}>사전예약하기</HeaderButton>
         </RightHeader>
       </Header>
+      {isModalOpen && <Modal onClose={() => closeModal()} />}
     </HeaderContainer>
   );
 }
