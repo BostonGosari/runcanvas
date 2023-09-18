@@ -3,9 +3,6 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import bodyImage from "../assets/img/body.jpg";
 
-
-
-
 const HomeContainer = styled.div`
   max-width: 1512px;
   margin: 0 auto;
@@ -65,6 +62,7 @@ const Button2 = styled.button`
 
 function Home() {
   const [isShowing, setIsShowing] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   const openModal = () => {
     setIsShowing(true);
@@ -73,7 +71,7 @@ function Home() {
   useEffect(() => {
     // 페이지가 로드될 때 버튼 요소를 부드럽게 나타나게 하려면 타임아웃을 사용할 수 있습니다.
     setTimeout(() => {
-      setIsShowing(true); // Button1이 나타난 후 0.5초 후에 Button2를 나타나게 함
+      setShowButton(true); // Button1이 나타난 후 0.5초 후에 Button2를 나타나게 함
     }, 500); // Button1을 나타낸 후 0.5초 후에 Button2를 나타나게 함
   }, []);
 
@@ -81,9 +79,12 @@ function Home() {
     <HomeContainer>
       <div>{isShowing ? <Modal onClose={setIsShowing} /> : null}</div>
       <HomeImage src={bodyImage} alt="Body" />
-      <Button1 onClick={() => openModal()}>사전예약하기</Button1>
-      <Button2 onClick={() => openModal()}>사전예약하기</Button2>
-     
+      <Button1 showButton={showButton} onClick={() => openModal()}>
+        사전예약하기
+      </Button1>
+      <Button2 showButton={showButton} onClick={() => openModal()}>
+        사전예약하기
+      </Button2>
     </HomeContainer>
   );
 }
