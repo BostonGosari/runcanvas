@@ -15,8 +15,8 @@ const AudienceBack = styled.div`
   z-index: 10;
   width: 100%;
   height: 100%;
-  background: rgba(28, 27, 27, 0.3);
-  backdrop-filter: blur(2px);
+  background: rgba(28, 27, 27, 0.4);
+  backdrop-filter: blur(5px);
 `;
 
 const AudienceModal = styled.div`
@@ -31,8 +31,7 @@ const AudienceModal = styled.div`
   height: 720px;
   border-radius: 30px;
   border: 4px solid #fff;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(40px);
+  background: rgba(255, 255, 255, 0.8);
 
   .cancelButton {
     width: 20px;
