@@ -39,7 +39,7 @@ const Button1 = styled.button`
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  top: 12.5%;
+  top: 12.2%;
   left: 50%;
   opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
