@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
-import bodyImage from "../assets/img/body.png";
+import bodyImage from "../assets/img/body.jpg";
 
 const HomeContainer = styled.div`
   max-width: 1512px;
@@ -26,7 +26,9 @@ const Button1 = styled.button`
   position: absolute;
   top: 12%;
   left: 50%;
+  opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in;
 
   &:hover {
     color: rgb(0, 0, 0);
@@ -46,7 +48,9 @@ const Button2 = styled.button`
   position: absolute;
   top: 91%;
   left: 50%;
+  opacity: ${(props) => (props.showButton ? 1 : 0)};
   transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in;
 
   &:hover {
     color: rgb(0, 0, 0);
@@ -56,17 +60,25 @@ const Button2 = styled.button`
 
 function Home() {
   const [isShowing, setIsShowing] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   const openModal = () => {
     setIsShowing(true);
   };
 
+  useEffect(() => {
+    // 페이지가 로드될 때 버튼 요소를 부드럽게 나타나게 하려면 타임아웃을 사용할 수 있습니다.
+    setTimeout(() => {
+      setShowButton(true); // Button1이 나타난 후 0.5초 후에 Button2를 나타나게 함
+    }, 500); // Button1을 나타낸 후 0.5초 후에 Button2를 나타나게 함
+  }, []);
+
   return (
     <HomeContainer>
       <div>{isShowing ? <Modal onClose={setIsShowing} /> : null}</div>
       <HomeImage src={bodyImage} alt="Body" />
-      <Button1>사전예약하기</Button1>
-      <Button2>사전예약하기</Button2>
+      <Button1 showButton={showButton}>사전예약하기</Button1>
+      <Button2 showButton={showButton}>사전예약하기</Button2>
       <a className="apply" onClick={() => openModal()}>
         사전신청하기
       </a>
