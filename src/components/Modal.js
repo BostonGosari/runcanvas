@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { createPortal } from "react-dom";
 import cancel from "../assets/img/cancel.png";
 import check from "../assets/img/check.png";
-// import { dbService } from "../index";
-// import { doc, setDoc } from "firebase/firestore";
+import { dbService } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const AudienceBack = styled.div`
   position: fixed;
@@ -15,7 +15,8 @@ const AudienceBack = styled.div`
   z-index: 10;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(28, 27, 27, 0.3);
+  backdrop-filter: blur(2px);
 `;
 
 const AudienceModal = styled.div`
@@ -24,14 +25,14 @@ const AudienceModal = styled.div`
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: calc(50% - 365px);
-  left: calc(50% - 300px);
-  width: 600px;
-  height: 726px;
+  top: calc(50% - 360px);
+  left: calc(50% - 236px);
+  width: 472px;
+  height: 720px;
   border-radius: 30px;
-  border: 1px solid #fff;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(25px);
+  border: 4px solid #fff;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(40px);
 
   .cancelButton {
     width: 20px;
@@ -40,17 +41,11 @@ const AudienceModal = styled.div`
     margin-right: 37px;
     margin-left: auto;
     margin-top: 27px;
-    margin-bottom: 7px;
-  }
-
-  .contents {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 15px;
   }
 
   .title {
-    color: #fff;
+    color: #000000;
     text-align: center;
     font-family: "SF Pro", sans-serif;
     font-size: 25px;
@@ -60,51 +55,53 @@ const AudienceModal = styled.div`
     padding-top: 15px;
   }
 
-  .desc {
-    color: #ddd;
+  .fee {
+    color: #000000;
     text-align: center;
     font-family: "SF Pro", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 510;
-    line-height: 170%;
-    padding-top: 20px;
-    padding-bottom: 25px;
+    font-weight: 400;
+    line-height: 150%;
+    padding-top: 45px;
+    padding-bottom: 110px;
   }
 
-  .descmo {
-    display: none;
+  .contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
   }
-
   .fields {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 350px;
   }
 
   .label {
-    color: #fff;
+    color: #000000;
     text-align: center;
     font-family: "SF Pro", sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 510;
     line-height: normal;
-    padding-top: 20px;
+    padding-top: 24px;
     padding-bottom: 10px;
   }
 
   .textField {
-    width: 414px;
     /* height: 44px; */
     flex-shrink: 0;
 
     border-radius: 5px;
-    border: 1px solid #fff;
+    border: 1px solid #000000;
     background: rgba(217, 217, 217, 0.19);
     padding: 10px 20px;
-
-    color: #fff;
+    width: 310px;
+    color: #000000;
     font-family: "SF Pro", sans-serif;
     font-size: 14px;
     font-style: normal;
@@ -112,6 +109,11 @@ const AudienceModal = styled.div`
     line-height: 170%;
     outline: none;
   }
+
+  #phone {
+    margin-bottom: 30px;
+  }
+
   .accountNum {
     display: flex;
     justify-content: center;
@@ -120,63 +122,53 @@ const AudienceModal = styled.div`
     align-items: center;
   }
 
-  .copy {
-    width: 12px;
-    height: 15px;
-  }
-
-  .fee {
-    color: #fff;
-    text-align: center;
-    font-family: "SF Pro", sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    padding-top: 45px;
-  }
   .checkDiv {
     display: flex;
     gap: 10px;
-    padding-top: 15px;
-    color: #fff;
-    text-align: center;
+    padding-top: 10px;
+
+    color: #000000;
+
     font-family: "SF Pro", sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    width: 350px;
   }
   input[type="checkbox" i] {
     width: 14px;
     height: 14px;
     border-radius: 1px;
-    border: 1px solid #fff;
+    border: 1px solid #000000;
     background-color: none !important;
   }
 
+  input[type="checkbox"]:checked {
+    border: 1px solid #000000;
+    background-color: #fff;
+    color: #000000;
+  }
   .apply {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 38px;
-    /* height: 44px; */
-    margin: 30px auto 30px auto;
-    background: #3300ff;
-    border-radius: 25px;
-    font-weight: 700;
+    margin-top: 55px;
+    width: 176px;
+    height: 48px;
+    color: #fff;
+    border-radius: 15px;
+    background: #000;
+    font-family: Pretendard;
     font-size: 20px;
-    line-height: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     text-decoration: none;
-    text-align: center;
     border-style: none;
-    color: #dadcfa;
   }
 
   .apply:disabled {
     cursor: not-allowed;
-    background: #737373;
+    background: gray;
+    border: 1px solid lightgray;
   }
 
   .checkImage {
@@ -271,7 +263,6 @@ const AudienceModal = styled.div`
       width: 120px;
       /* height: 35px; */
       margin: 30px auto 45px auto;
-      background: #3300ff;
       border-radius: 25px;
       padding: 9px 20px;
     }
@@ -300,9 +291,12 @@ const AudienceModal = styled.div`
 
 function Modal(props) {
   const { onClose } = props;
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
   const [isApplyed, setIsApplyed] = useState(false);
   const [name, setName] = useState("");
+  const [crew, setCrew] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const onChange = (event) => {
     const {
@@ -310,22 +304,36 @@ function Modal(props) {
     } = event;
     if (name === "name") {
       setName(value);
-    } else setPhone(value);
+    } else if (name === "crew") {
+      setCrew(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else {
+      setPhone(value);
+    }
   };
 
-  //   function handleOnSubmit() {
-  //     console.log("Document written with UID: ", name);
-  //     const docRef = setDoc(doc(dbService, "청중참가단", name), {
-  //       name: name,
-  //       phone: phone,
-  //     });
+  function handleOnSubmit() {
+    console.log("Document written with UID: ", email);
+    const docRef = setDoc(doc(dbService, "forms", email), {
+      name: name,
+      phone: phone,
+      email: email,
+      crew: crew,
+      personal: isChecked1,
+      ad: isChecked2,
+    });
 
-  //     if (docRef) {
-  //       setIsApplyed(!isApplyed);
-  //     }
-  //   }
+    if (docRef) {
+      setIsApplyed(!isApplyed);
+    }
+  }
 
-  const isFormValid = name.trim() !== "" && /^\d+$/.test(phone) && isChecked;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // 이메일 유효성 검사
+  const isPhoneNumberValid = /^010-\d{4}-\d{4}$/.test(phone); // 전화번호 유효성 검사
+
+  const isFormValid =
+    name.trim() !== "" && isChecked1 && isEmailValid && isPhoneNumberValid;
 
   return createPortal(
     <AudienceBack>
@@ -339,82 +347,94 @@ function Modal(props) {
         ></img>
         {!isApplyed ? (
           <div className="contents">
-            <a className="title">
-              DREAMLANDTHON
-              <br />
-              청중참가단
-            </a>
-            <a className="desc">
-              7월 29일 오후 2시 30분, 드림랜드의 마지막날을 함께 즐겨요. <br />
-              청중참가단 전원에게 ID CARD와 기념 굿즈가 제공됩니다.
-            </a>
-            <a className="descmo">
-              7월 29일 오후 2시 30분,
-              <br />
-              드림랜드의 마지막날을 함께 즐겨요. <br />
-              청중참가단 전원에게 ID CARD와 기념 굿즈가 제공됩니다.
-            </a>
             <div className="fields">
-              <a className="label">이름</a>
+              <a className="label">성함*</a>
               <input
                 className="textField"
                 value={name}
                 name="name"
                 id="name"
                 type="text"
-                placeholder="홍길동(한글)"
+                placeholder="홍길동"
                 required
                 onChange={onChange}
               />
-              <a className="label">전화번호</a>
+              <a className="label">
+                크루명(소속된 러닝 크루가 있다면 작성해주세요.){" "}
+              </a>
+              <input
+                className="textField"
+                value={crew}
+                name="crew"
+                id="crew"
+                type="text"
+                placeholder="런캔버스"
+                onChange={onChange}
+              />
+              <a className="label">이메일*</a>
+              <input
+                className="textField"
+                value={email}
+                name="email"
+                id="name"
+                type="text"
+                placeholder="run@can.vas"
+                required
+                onChange={onChange}
+              />
+              <a className="label">
+                전화번호*(트랙 관련으로 연락드릴 예정입니다.)
+              </a>
               <input
                 className="textField"
                 value={phone}
                 name="phone"
-                id="name"
+                id="phone"
                 type="text"
-                placeholder="01012345678"
+                placeholder="010-1234-5678"
                 required
                 onChange={onChange}
               />
             </div>
-            <div className="fee">
-              아래 계좌로 보증금 3,000원을 납부하시면 신청이 완료됩니다.
-              <br />
-              신청서 제출 후 24시간 이내로 입금 미확인시 신청이 취소될 수
-              있습니다. <br />
-              3000원은 보증금으로, 행사 참여시 100% 환급해드립니다.
+
+            <div className="checkDiv">
+              <input
+                className="checkBox"
+                type="checkbox"
+                checked={isChecked1}
+                onChange={() => setIsChecked1(!isChecked1)}
+              />
+              <a>
+                개인정보 수집, 이용 동의서* <br />
+                (개인정보는 해당 이벤트 이후 즉시 파기 예정입니다.)
+              </a>
             </div>
             <div className="checkDiv">
               <input
                 className="checkBox"
                 type="checkbox"
-                checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
+                checked={isChecked2}
+                onChange={() => setIsChecked2(!isChecked2)}
               />
-              <a>입금했어요</a>
+              <a>광고성 정보 수신 동의 (이벤트, 혜택 등 정보 안내)</a>
             </div>
 
             <button
               className={`apply ${!isFormValid ? "disabled" : ""}`}
               disabled={!isFormValid}
-              //   onClick={handleOnSubmit}
+              onClick={handleOnSubmit}
             >
-              신청하기
+              사전예약신청
             </button>
           </div>
         ) : (
           <div className="contents">
-            <a className="title">
-              DREAMLANDTHON
-              <br />
-              청중참가단
-            </a>
             <img className="checkImage" src={check} />
             <a className="title">신청이 완료되었습니다.</a>
             <a className="fee">
-              7월 29일 오후 2시 30분, <br />
-              한동대학교 김영길 그레이스 채플에서 만나요!
+              추후에 입력하신 정보를 바탕으로 <br />
+              연락드리겠습니다. <br />
+              감사합니다 :)
             </a>
             <button
               className="apply"
