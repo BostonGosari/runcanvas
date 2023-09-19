@@ -30,12 +30,12 @@ const MobileHomeImage = styled.img`
 `;
 
 const Button1 = styled.button`
-  background-color: #3e3e3e;
+  background-color: #000000;
   color: rgb(255, 255, 255);
   border: none;
-  padding: 1.5vw 4vw;
+  padding: 1.2vw 3vw;
   border-radius: 1.5vw;
-  font-size: 3vw;
+  font-size: 2.3vw;
   font-weight: bold;
   cursor: pointer;
   position: absolute;
@@ -66,12 +66,12 @@ const Button1 = styled.button`
 `;
 
 const Button2 = styled.button`
-  background-color: #3e3e3e;
+  background-color: #000000;
   color: rgb(255, 255, 255);
   border: none;
-  padding: 1.5vw 4vw;
+  padding: 1.2vw 3vw;
   border-radius: 1.5vw;
-  font-size: 3vw;
+  font-size: 2.3vw;
   font-weight: bold;
   cursor: pointer;
   position: absolute;

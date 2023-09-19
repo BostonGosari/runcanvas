@@ -48,7 +48,7 @@ function Header() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px;
+    padding: 10px 20px;
 
     @media screen and (max-width: 768px) {
       padding: 10px 10px;
@@ -87,8 +87,8 @@ function Header() {
   `;
 
   const Logo = styled.img`
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
 
     @media screen and (max-width: 768px) {
       width: 32px;
@@ -98,8 +98,8 @@ function Header() {
 
   const AppName = styled.div`
     font-weight: bold;
-    font-size: 36px;
-    margin-left: 35px;
+    font-size: 30px;
+    margin-left: 20px;
 
     @media screen and (max-width: 768px) {
       font-size: 20px;
