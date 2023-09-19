@@ -16,7 +16,8 @@ const AudienceBack = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(28, 27, 27, 0.4);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(8px);
 `;
 
 const AudienceModal = styled.div`
@@ -30,9 +31,10 @@ const AudienceModal = styled.div`
   width: 472px;
   height: 720px;
   border-radius: 30px;
-  border: 4px solid #fff;
+  border: 3px solid #fff;
   background: rgba(255, 255, 255, 0.8);
 
+  backdrop-filter: blur(10px);
   .cancelButton {
     width: 20px;
     height: 20px;
@@ -162,6 +164,7 @@ const AudienceModal = styled.div`
     line-height: normal;
     text-decoration: none;
     border-style: none;
+    font-family: "SF Pro", sans-serif;
   }
 
   .apply:disabled {
@@ -187,10 +190,7 @@ const AudienceModal = styled.div`
     width: 92%;
     height: 630px;
     border-radius: 30px;
-
-    border: 1px solid #fff;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(25px);
+    border: 2px solid #fff;
 
     .cancelButton {
       width: 14px;
@@ -252,6 +252,7 @@ const AudienceModal = styled.div`
     .checkDiv {
       padding-top: 20px;
       font-size: 12px;
+      width: 92%;
     }
 
     input[type="checkbox" i] {
@@ -259,11 +260,13 @@ const AudienceModal = styled.div`
       height: 12px;
     }
     .apply {
-      width: 120px;
+      width: 136px;
       /* height: 35px; */
+      font-family: "SF Pro", sans-serif;
       margin: 30px auto 45px auto;
       border-radius: 25px;
-      padding: 9px 20px;
+      padding: 11px 20px;
+      font-size: 14px;
     }
     .checkImage {
       width: 114px;
@@ -382,7 +385,7 @@ function Modal(props) {
                 onChange={onChange}
               />
               <a className="label">
-                전화번호*(트랙 관련으로 연락드릴 예정입니다.)
+                전화번호*(010-xxxx-xxxx 형식으로 입력해주세요.)
               </a>
               <input
                 className="textField"
