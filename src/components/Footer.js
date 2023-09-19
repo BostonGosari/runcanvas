@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 function Footer() {
   const FooterContainer = styled.div`
-    max-width: 1512px;
-    margin: 0 auto;
+    diplay: none;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   `;
 
   const Footer = styled.div`
