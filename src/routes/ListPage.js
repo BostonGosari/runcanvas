@@ -51,6 +51,7 @@ const ListPageComponent = styled.div`
       background-color: #333;
       border-radius: 5px;
       overflow: hidden;
+      font-size: 12px;
     }
 
     th,
@@ -132,6 +133,16 @@ function ListPage() {
     setShowCrew(displayCrew);
   };
 
+  const formatTimestamp = (timestamp) => {
+    if (timestamp) {
+      const date = new Date(timestamp.toMillis());
+      const formattedDate = date.toLocaleString();
+      return formattedDate;
+    } else {
+      return " "; // 타임스탬프가 없는 경우 "N/A"를 반환하거나 다른 기본값을 지정합니다.
+    }
+  };
+
   return (
     <ListPageComponent>
       <h1>🌿보스턴고사리짱🌿</h1>
@@ -178,6 +189,7 @@ function ListPage() {
                   <th>크루명</th>
                   <th>이메일</th>
                   <th>전화번호</th>
+                  <th>신청시간</th>
                 </tr>
               </thead>
               <tbody>
@@ -190,6 +202,7 @@ function ListPage() {
                       <td>{per.crew}</td>
                       <td>{per.email}</td>
                       <td>{per.phone}</td>
+                      <td>{formatTimestamp(per.time)}</td>
                     </tr>
                   ))}
               </tbody>

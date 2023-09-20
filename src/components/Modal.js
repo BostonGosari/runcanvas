@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import cancel from "../assets/img/cancel.png";
 import check from "../assets/img/check.png";
 import { dbService } from "../firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { serverTimestamp, doc, setDoc } from "firebase/firestore";
 
 const AudienceBack = styled.div`
   position: fixed;
@@ -324,6 +324,7 @@ function Modal(props) {
       crew: crew,
       personal: isChecked1,
       ad: isChecked2,
+      time: serverTimestamp(),
     });
 
     if (docRef) {
